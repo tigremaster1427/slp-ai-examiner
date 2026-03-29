@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Prueba IA</h1>
+<input id="msg" placeholder="Escribe algo" />
+<button onclick="probar()">Enviar</button>
+<p id="respuesta"></p>
+
+<script>
+async function probar() {
+  const msg = document.getElementById("msg").value;
+  const res = await fetch("/api/ai", {
+    method: "POST",
+    body: JSON.stringify({ message: msg })
+  });
+  const data = await res.json();
+  document.getElementById("respuesta").innerText = data.reply;
+}
+</script>
+
+</body>
+</html>
